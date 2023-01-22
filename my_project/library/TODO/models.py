@@ -15,4 +15,5 @@ class ToDo(models.Model):
     created_note = models.DateTimeField(auto_now_add=True, verbose_name="Created", editable=False)
     updated_note = models.DateTimeField(auto_now=True, verbose_name="Edited", editable=False)
     user_note = models.ForeignKey(Users, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
