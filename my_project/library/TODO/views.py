@@ -1,8 +1,10 @@
 from rest_framework import filters
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, ToDo
 from .serializers import ProjectModelSerializer, ToDoModelSerializer
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework import mixins, viewsets
 
 
 class ProjectPagination(LimitOffsetPagination):
@@ -26,3 +28,12 @@ class ToDoModelViewSet(ModelViewSet):
     serializer_class = ToDoModelSerializer
     pagination_class = ToDoPagination
     filterset_fields = ['project_note']
+
+    def destroy(self, request, *args, **kwargs):
+        instanse = self.get_object()
+        serializer = ToDoModelSerializer(instanse, data={'deleted': True},
+                                         context={'request': request}, partial=True)
+        serializer.is_valid()
+        serializer.save()
+        return Response(serializer.data)
+
