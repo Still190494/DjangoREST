@@ -13,9 +13,9 @@ return (
 const ProjectList = ({projects}) => {
 return (
 <table>
-<th>Name project</th>
-<th>Link to the repository</th>
-<th>Users</th>
+<th>Название проекта</th>
+<th>Ссылка на репозиторий</th>
+<th>Пользователь</th>
 {projects.map((project) => <ProjectItem project={project} />)}
 </table>
 )

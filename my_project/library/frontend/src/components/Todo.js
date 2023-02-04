@@ -14,11 +14,11 @@ return (
 const TodoList = ({todos}) => {
 return (
 <table>
-<th>Project note</th>
-<th>Text note</th>
-<th>Created note</th>
-<th>Updated note</th>
-<th>User note</th>
+<th>Проект</th>
+<th>Текст заметки</th>
+<th>Дата создания</th>
+<th>Дата обновления</th>
+<th>Пользователь</th>
 <th>Is active</th>
 {todos.map((todo) => <TodoItem todo={todo} />)}
 </table>

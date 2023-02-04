@@ -11,9 +11,9 @@ return (
 const UserList = ({users}) => {
 return (
 <table>
-<th>First name</th>
-<th>Last Name</th>
-<th>Birthday year</th>
+<th>Имя</th>
+<th>Фамилия</th>
+<th>Год рождения</th>
 {users.map((user) => <UserItem user={user} />)}
 </table>
 )

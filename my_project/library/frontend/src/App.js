@@ -5,6 +5,7 @@ import UserList from './components/User.js';
 import ProjectList from './components/Project';
 import TodoList from './components/Todo';
 import axios from 'axios'
+import {HashRouter, Route, Link, Switch} from 'react-router-dom'
 
 class App extends React.Component {
 constructor(props) {
@@ -50,13 +51,28 @@ this.setState(
 }
 
 
-render () {
-return (
-<div>
-<UserList users={this.state.users} />
-</div>
-)
-}
-}
+render() {
+    return (
+    <div className="App">
+    <HashRouter>
+    <nav>
+    <ul>
+    <li><Link to='/'>Users</Link></li>
+    <li><Link to='/project'>Projects</Link></li>
+    <li><Link to='/todo'>Todos</Link></li>
+    </ul>
+    </nav>
+    <Route exact path='/' component={() => <UserList
+    users={this.state.users} />} />
+    <Route exact path='/project' component={() => <ProjectList
+    projects={this.state.projects} />} />
+    <Route exact path='/todo' component={() => <TodoList
+    todos={this.state.todos} />} />
+    </HashRouter>
+    </div>
+    )
+    }
+    }
+
 export default App;
 
