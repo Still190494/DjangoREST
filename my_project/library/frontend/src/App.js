@@ -6,7 +6,7 @@ import ProjectList from './components/Project';
 import TodoList from './components/Todo';
 import LoginForm from './components/Auth.js'
 import axios from 'axios'
-import {HashRouter, Route, Link, Switch} from 'react-router-dom'
+import {HashRouter, Route, Link, Switch, BrowserRouter} from 'react-router-dom'
 
 class App extends React.Component {
 constructor(props) {
@@ -59,7 +59,7 @@ this.load_data()
 render() {
     return (
     <div className="App">
-    <HashRouter>
+    <BrowserRouter>
     <nav>
     <ul>
     <li><Link to='/'>Users</Link></li>
@@ -77,7 +77,7 @@ render() {
     todos={this.state.todos} />} />
     <Route exact path='/login' component={() => <LoginForm />} />
     </Switch>
-    </HashRouter>
+    </BrowserRouter>
     </div>
     )
     }
