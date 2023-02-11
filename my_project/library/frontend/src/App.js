@@ -4,6 +4,7 @@ import './App.css';
 import UserList from './components/User.js';
 import ProjectList from './components/Project';
 import TodoList from './components/Todo';
+import LoginForm from './components/Auth.js'
 import axios from 'axios'
 import {HashRouter, Route, Link, Switch} from 'react-router-dom'
 
@@ -17,37 +18,41 @@ this.state = {
 }
 }
 
+load_data() {
+    axios.get('http://127.0.0.1:8000/api/users/')
+    .then(response => {
+    const users = response.data.results
+    this.setState(
+    {
+    'users': users
+    }
+    )
+    }).catch(error => console.log(error))
+
+    axios.get('http://127.0.0.1:8000/api/project/')
+    .then(response => {
+    const projects = response.data.results
+    this.setState(
+    {
+    'projects': projects
+    }
+    )
+    }).catch(error => console.log(error))
+
+    axios.get('http://127.0.0.1:8000/api/todo/')
+    .then(response => {
+    const todos = response.data.results
+    this.setState(
+    {
+    'todos': todos
+    }
+    )
+    }).catch(error => console.log(error))
+}
+
 
 componentDidMount() {
-axios.get('http://127.0.0.1:8000/api/users/')
-.then(response => {
-const users = response.data.results
-this.setState(
-{
-'users': users
-}
-)
-}).catch(error => console.log(error))
-
-axios.get('http://127.0.0.1:8000/api/project/')
-.then(response => {
-const projects = response.data.results
-this.setState(
-{
-'projects': projects
-}
-)
-}).catch(error => console.log(error))
-
-axios.get('http://127.0.0.1:8000/api/todo/')
-.then(response => {
-const todos = response.data.results
-this.setState(
-{
-'todos': todos
-}
-)
-}).catch(error => console.log(error))
+this.load_data()
 }
 
 
@@ -60,14 +65,18 @@ render() {
     <li><Link to='/'>Users</Link></li>
     <li><Link to='/project'>Projects</Link></li>
     <li><Link to='/todo'>Todos</Link></li>
+    <li><Link to='/login'>Login</Link></li>
     </ul>
     </nav>
+    <Switch>
     <Route exact path='/' component={() => <UserList
     users={this.state.users} />} />
     <Route exact path='/project' component={() => <ProjectList
     projects={this.state.projects} />} />
     <Route exact path='/todo' component={() => <TodoList
     todos={this.state.todos} />} />
+    <Route exact path='/login' component={() => <LoginForm />} />
+    </Switch>
     </HashRouter>
     </div>
     )
