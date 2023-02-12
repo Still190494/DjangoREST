@@ -68,6 +68,7 @@ load_data() {
     }
     )
     }).catch(error => console.log(error))
+    this.setState({users: []})
 
     axios.get('http://127.0.0.1:8000/api/project/', {headers})
     .then(response => {
@@ -78,6 +79,7 @@ load_data() {
     }
     )
     }).catch(error => console.log(error))
+    this.setState({projects: []})
 
     axios.get('http://127.0.0.1:8000/api/todo/', {headers})
     .then(response => {
@@ -88,6 +90,8 @@ load_data() {
     }
     )
     }).catch(error => console.log(error))
+    this.setState({todos: []})
+
 }
 
 
