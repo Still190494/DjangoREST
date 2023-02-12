@@ -6,6 +6,7 @@ constructor(props) {
 super(props)
 this.state = {login: '', password: ''}
 }
+
 handleChange(event)
 {
 this.setState(
@@ -14,10 +15,12 @@ this.setState(
 }
 );
 }
+
 handleSubmit(event) {
-console.log(this.state.login + ' ' + this.state.password)
+this.props.get_token(this.state.login, this.state.password)
 event.preventDefault()
 }
+
 render() {
 return (
 <form onSubmit={(event)=> this.handleSubmit(event)}>
