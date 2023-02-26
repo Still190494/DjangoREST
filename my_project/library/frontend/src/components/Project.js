@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 
 const ProjectItem = ({project, deleteProject}) => {
 return (
@@ -13,6 +13,7 @@ return (
 }
 const ProjectList = ({projects, deleteProject}) => {
 return (
+<div>
 <table>
 <tr>
 <th>Название проекта</th>
@@ -22,6 +23,8 @@ return (
 {projects.map((project) => <ProjectItem project={project} deleteProject={deleteProject}
  />)}
 </table>
+<Link to='/project/create'>Create</Link>
+</div>
 )
 }
 export default ProjectList
