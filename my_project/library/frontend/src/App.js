@@ -83,6 +83,16 @@ deleteProject(id) {
 }
 
 
+deleteTodo(id) {
+    const headers = this.get_headers();
+
+    axios.delete(`http://127.0.0.1:8000/api/todo/${id}/`, {'headers': headers}).then(response => {
+    this.setState({todos: this.state.todos.filter((todo)=>todo.id !==
+    id)})
+    }).catch(error => console.log(error))
+}
+
+
 load_data() {
     const headers = this.get_headers()
     axios.get('http://127.0.0.1:8000/api/users/', {headers})
@@ -154,7 +164,7 @@ render() {
     projects={this.state.projects} deleteProject={(id)=>this.deleteProject(id)} />} />
 
     <Route exact path='/todo' component={() => <TodoList
-    todos={this.state.todos} />} />
+    todos={this.state.todos} deleteTodo={(id)=>this.deleteTodo(id)} />} />
 
     <Route exact path='/login' component={() => <LoginForm
     get_token={(login, password) => this.get_token(login, password)} />} />
