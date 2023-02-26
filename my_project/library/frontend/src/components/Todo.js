@@ -8,6 +8,7 @@ return (
 <td>{todo.updated_note}</td>
 <td>{todo.user_note}</td>
 <td>{todo.is_active}</td>
+<td><button type='button'>Delete</button></td>
 </tr>
 )
 }
@@ -20,6 +21,7 @@ return (
 <th>Дата обновления</th>
 <th>Пользователь</th>
 <th>Is active</th>
+<td></td>
 {todos.map((todo) => <TodoItem todo={todo} />)}
 </table>
 )

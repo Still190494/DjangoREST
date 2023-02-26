@@ -48,7 +48,7 @@ this.set_token(response.data['token'])
 
 get_headers() {
 let headers = {
-'Content-Type': 'application/json'
+'Content-Type': 'application/json',
 }
 if (this.is_authenticated())
 {
@@ -56,6 +56,17 @@ headers['Authorization'] = 'Token ' + this.state.token
 }
 return headers
 }
+
+
+deleteProject(id) {
+    const headers = this.get_headers();
+    axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers})
+    .then(response => {
+    this.setState({projects: this.state.projects.filter((project)=>project.id !==
+    id)})
+    }).catch(error => console.log(error))
+}
+
 
 load_data() {
     const headers = this.get_headers()
@@ -118,7 +129,7 @@ render() {
     <Route exact path='/' component={() => <UserList
     users={this.state.users} />} />
     <Route exact path='/project' component={() => <ProjectList
-    projects={this.state.projects} />} />
+    projects={this.state.projects} deleteProject={(id)=>this.deleteProject(id)} />} />
     <Route exact path='/todo' component={() => <TodoList
     todos={this.state.todos} />} />
     <Route exact path='/login' component={() => <LoginForm
