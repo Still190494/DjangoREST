@@ -155,7 +155,7 @@ render() {
     users={this.state.users} />} />
 
 
-    <Route exact path='/project/create' component={() => <ProjectForm
+    <Route exact path='/project/create' component={() => <ProjectForm users={this.state.users}
     createProject={(name_project, link_to_the_repository, users) => this.createProject(name_project,
                                                                                        link_to_the_repository,
                                                                                        users)} />} />

@@ -39,8 +39,10 @@ render() {
 
             <div className="form-group">
             <label for="users">Пользователь</label>
-            <input type="text" className="form-control" name="users"
-                value={this.state.users} onChange={(event)=>this.handleChange(event)} />
+            <select name="users" className='form-control' onChange={(event)=>this.handleChange(event)}>
+            {this.props.users.map((user)=><option value={user.id}>{user.user_name}</option>)}
+            </select>
+
             </div>
 
 
