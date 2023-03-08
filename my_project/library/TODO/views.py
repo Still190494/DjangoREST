@@ -29,11 +29,11 @@ class ToDoModelViewSet(ModelViewSet):
     pagination_class = ToDoPagination
     filterset_fields = ['project_note']
 
-    def destroy(self, request, *args, **kwargs):
-        instanse = self.get_object()
-        serializer = ToDoModelSerializer(instanse, data={'deleted': True},
-                                         context={'request': request}, partial=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    # def destroy(self, request, *args, **kwargs):
+    #     instanse = self.get_object()
+    #     serializer = ToDoModelSerializer(instanse, data={'deleted': True},
+    #                                      context={'request': request}, partial=True)
+    #     serializer.is_valid()
+    #     serializer.save()
+    #     return Response(serializer.data)
 
